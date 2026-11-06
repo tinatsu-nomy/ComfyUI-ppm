@@ -74,5 +74,6 @@ def cosmos_attn2_negpip(
     extra_options: dict = {},
 ) -> dict[str, torch.Tensor | None]:
     negpip_mask = extra_options.get(NEGPIP_MASK_KEY) if extra_options else None
-    new_v = v if negpip_mask is None else v * negpip_mask
-    return {"q": q, "k": k, "v": new_v, "pe": pe}
+    if negpip_mask is None or negpip_mask.shape[1] != v.shape[1] or negpip_mask.shape[0] not in (1, v.shape[0]):
+        return {"q": q, "k": k, "v": v, "pe": pe}
+    return {"q": q, "k": k, "v": v * negpip_mask, "pe": pe}

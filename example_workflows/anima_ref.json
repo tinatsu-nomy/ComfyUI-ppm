@@ -1,8 +1,8 @@
 {
   "id": "453c28da-1ebf-4738-abaf-63fb884a72b2",
   "revision": 0,
-  "last_node_id": 132,
-  "last_link_id": 189,
+  "last_node_id": 135,
+  "last_link_id": 202,
   "nodes": [
     {
       "id": 72,
@@ -63,7 +63,7 @@
           "type": "VAE",
           "links": [
             91,
-            183
+            197
           ]
         }
       ],
@@ -129,7 +129,7 @@
         200
       ],
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -143,7 +143,7 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            180
+            198
           ]
         }
       ],
@@ -169,7 +169,7 @@
         200
       ],
       "flags": {},
-      "order": 7,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -183,7 +183,7 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            181
+            199
           ]
         }
       ],
@@ -191,10 +191,10 @@
         "Node name for S&R": "CLIPTextEncode"
       },
       "widgets_values": [
-        "score_1, fused fingers, extra fingers,"
+        "score_1, fused fingers, extra fingers, abstract,"
       ],
       "widgets_values_named": {
-        "text": "score_1, fused fingers, extra fingers,"
+        "text": "score_1, fused fingers, extra fingers, abstract,"
       }
     },
     {
@@ -209,23 +209,23 @@
         480
       ],
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 187
+          "link": 202
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 176
+          "link": 195
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 177
+          "link": 194
         },
         {
           "name": "latent_image",
@@ -284,7 +284,8 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            88
+            88,
+            200
           ]
         }
       ],
@@ -316,7 +317,7 @@
         50
       ],
       "flags": {},
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -355,7 +356,7 @@
         610
       ],
       "flags": {},
-      "order": 11,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -408,7 +409,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            189
+            196
           ]
         },
         {
@@ -416,114 +417,13 @@
           "type": "CLIP",
           "links": [
             144,
-            145
+            145,
+            201
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "CLIPNegPip"
-      }
-    },
-    {
-      "id": 129,
-      "type": "AnimaRefPPM",
-      "pos": [
-        820,
-        230
-      ],
-      "size": [
-        310,
-        400
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 189
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 183
-        },
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 188
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 180
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 181
-        },
-        {
-          "name": "clip",
-          "shape": 7,
-          "type": "CLIP",
-          "link": null
-        },
-        {
-          "name": "latent",
-          "shape": 7,
-          "type": "LATENT",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            187
-          ]
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "links": [
-            176
-          ]
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "links": [
-            177
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "AnimaRefPPM"
-      },
-      "widgets_values": [
-        "anima/reference/snapref_v1b_29B.safetensors",
-        1,
-        "character",
-        0,
-        0,
-        0.8,
-        "no reference",
-        "",
-        ""
-      ],
-      "widgets_values_named": {
-        "lora_name": "anima/reference/snapref_v1b_29B.safetensors",
-        "ref_guidance": 1,
-        "mode": "character",
-        "strength_gain": 0,
-        "start_percent": 0,
-        "end_percent": 0.8,
-        "outside_window": "no reference",
-        "block_list": "",
-        "ref_caption": ""
       }
     },
     {
@@ -565,6 +465,159 @@
       "widgets_values_named": {
         "image": "ref_sharon.jpg",
         "upload": "image"
+      }
+    },
+    {
+      "id": 133,
+      "type": "ReferenceCondPPM",
+      "pos": [
+        1140,
+        -140
+      ],
+      "size": [
+        220,
+        140
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 188
+        },
+        {
+          "name": "ppm_ref_cond",
+          "shape": 7,
+          "type": "PPM_REF_COND",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PPM_REF_COND",
+          "type": "PPM_REF_COND",
+          "links": [
+            193
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ReferenceCondPPM"
+      },
+      "widgets_values": [
+        1,
+        ""
+      ],
+      "widgets_values_named": {
+        "strength": 1,
+        "caption": ""
+      }
+    },
+    {
+      "id": 134,
+      "type": "AnimaRefPPM",
+      "pos": [
+        810,
+        230
+      ],
+      "size": [
+        320,
+        450
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 196
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 201
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 197
+        },
+        {
+          "name": "ppm_ref_cond",
+          "type": "PPM_REF_COND",
+          "link": 193
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 198
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 199
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 200
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            202
+          ]
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            195
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            194
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AnimaRefPPM"
+      },
+      "widgets_values": [
+        "anima/reference/snapref_v1b.safetensors",
+        1,
+        "character",
+        0,
+        1,
+        "separate",
+        "reference count",
+        0,
+        1,
+        "",
+        ""
+      ],
+      "widgets_values_named": {
+        "lora_name": "anima/reference/snapref_v1b.safetensors",
+        "strength_model": 1,
+        "mode": "character",
+        "ref_strength_gain": 0,
+        "ref_megapixels": 1,
+        "multi_layout": "separate",
+        "strength_norm": "reference count",
+        "start_percent": 0,
+        "end_percent": 1,
+        "block_list": "",
+        "ref_caption": ""
       }
     }
   ],
@@ -634,66 +687,90 @@
       "MODEL"
     ],
     [
-      176,
-      129,
-      1,
-      78,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      177,
-      129,
-      2,
-      78,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      180,
-      76,
+      188,
+      131,
       0,
-      129,
+      133,
+      0,
+      "IMAGE"
+    ],
+    [
+      193,
+      133,
+      0,
+      134,
       3,
-      "CONDITIONING"
+      "PPM_REF_COND"
     ],
     [
-      181,
-      77,
-      0,
-      129,
-      4,
-      "CONDITIONING"
-    ],
-    [
-      183,
-      73,
-      0,
-      129,
-      1,
-      "VAE"
-    ],
-    [
-      187,
-      129,
-      0,
+      194,
+      134,
+      2,
       78,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      195,
+      134,
+      1,
+      78,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      196,
+      115,
+      0,
+      134,
       0,
       "MODEL"
     ],
     [
-      188,
-      131,
+      197,
+      73,
       0,
-      129,
+      134,
       2,
-      "IMAGE"
+      "VAE"
     ],
     [
-      189,
-      115,
+      198,
+      76,
       0,
-      129,
+      134,
+      4,
+      "CONDITIONING"
+    ],
+    [
+      199,
+      77,
+      0,
+      134,
+      5,
+      "CONDITIONING"
+    ],
+    [
+      200,
+      79,
+      0,
+      134,
+      6,
+      "LATENT"
+    ],
+    [
+      201,
+      115,
+      1,
+      134,
+      1,
+      "CLIP"
+    ],
+    [
+      202,
+      134,
+      0,
+      78,
       0,
       "MODEL"
     ]
@@ -702,13 +779,13 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.2284597357367253,
+      "scale": 1.1167815779424761,
       "offset": [
-        68.84177300327981,
-        236.12776152543645
+        177.86067482499297,
+        297.4393056539977
       ]
     },
-    "frontendVersion": "1.57.6"
+    "frontendVersion": "1.58.7"
   },
   "version": 0.4
 }

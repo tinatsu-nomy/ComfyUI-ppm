@@ -4,7 +4,6 @@ from comfy_api.latest import ComfyExtension, io
 
 from .compat.utils import v3_schema_stub
 from .nodes_ppm import (
-    anima_ref,
     attention_couple_ppm,
     attention_selector,
     bounding_boxes_ppm,
@@ -21,6 +20,7 @@ from .nodes_ppm import (
     samplers,
     temperature_sampling,
 )
+from .nodes_ppm.reference import anima_ref, anima_ref_guidance, ref_cond, reference_gallery_ppm
 from .schedulers import inject_schedulers
 
 WEB_DIRECTORY = "./js"
@@ -31,12 +31,14 @@ class PPMExtension(ComfyExtension):
     async def on_load(self):
         inject_schedulers()
         attention_selector.init()
+        reference_gallery_ppm.init()
 
     @override
     async def get_node_list(self) -> list[type[io.ComfyNode]]:
         # TODO convert more nodes to v3
         return [
             *anima_ref.NODES,
+            *anima_ref_guidance.NODES,
             *attention_couple_ppm.NODES,
             *attention_selector.NODES,
             *bounding_boxes_ppm.NODES,
@@ -50,6 +52,8 @@ class PPMExtension(ComfyExtension):
             *v3_schema_stub(latent_tonemap),
             *misc.NODES,
             *moss_image.NODES,
+            *ref_cond.NODES,
+            *reference_gallery_ppm.NODES,
             *v3_schema_stub(samplers),
             *temperature_sampling.NODES,
         ]
